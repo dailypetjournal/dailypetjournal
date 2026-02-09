@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
+/* Daily Pet Journal – warm, comforting palette */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafaf9;
+  --foreground: #57534e;
+  --dark: #292524;
+  --light: #78716c;
+  --primary: #b45309;
+  --primary-hover: #92400e;
+  --border: #e7e5e4;
+  --theme-light: #f5f5f4;
+  --card: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-dark: var(--dark);
+  --color-light: var(--light);
+  --color-primary: var(--primary);
+  --color-border: var(--border);
+  --color-theme-light: var(--theme-light);
+  --font-sans: var(--font-mulish);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-mulish), ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Button-style links: keep text white on primary background */
+a.btn-primary {
+  color: #fff !important;
+  text-decoration: none;
+}
+a.btn-primary:hover {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.prose a {
+  font-weight: 500;
+}
+
+.prose blockquote {
+  border-left-color: var(--primary);
+  color: var(--light);
 }
