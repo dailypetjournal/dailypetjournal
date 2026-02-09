@@ -14,9 +14,7 @@ type CommentsProps = {
 };
 
 export function Comments({ appId, pageId, pageUrl, pageTitle }: CommentsProps) {
-  if (!appId?.trim()) {
-    return null;
-  }
+  const hasAppId = !!appId?.trim();
 
   return (
     <section
@@ -27,20 +25,29 @@ export function Comments({ appId, pageId, pageUrl, pageTitle }: CommentsProps) {
       <p className="mt-1 text-sm text-foreground">
         No account needed—leave your name, email, and comment below.
       </p>
-      <div className="cusdis-container mt-6">
-        <div
-          id="cusdis_thread"
-          data-host="https://cusdis.com"
-          data-app-id={appId}
-          data-page-id={pageId}
-          data-page-url={pageUrl}
-          data-page-title={pageTitle}
-        />
-        <Script
-          src="https://cusdis.com/js/cusdis.es.js"
-          strategy="afterInteractive"
-        />
-      </div>
+      {!hasAppId ? (
+        <p className="mt-4 rounded-lg bg-amber-50 p-3 text-sm text-amber-800">
+          Comments not loaded: <code>NEXT_PUBLIC_CUSDIS_APP_ID</code> is not set
+          for this build. Add it in Cloudflare Pages → Settings → Environment
+          variables, then redeploy.
+        </p>
+      ) : (
+        <div className="cusdis-container mt-6">
+          <div
+            id="cusdis_thread"
+            data-host="https://cusdis.com"
+            data-app-id={appId}
+            data-page-id={pageId}
+            data-page-url={pageUrl}
+            data-page-title={pageTitle}
+            data-theme="auto"
+          />
+          <Script
+            src="https://cusdis.com/js/cusdis.es.js"
+            strategy="afterInteractive"
+          />
+        </div>
+      )}
     </section>
   );
 }
