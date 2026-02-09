@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+// Force dynamic rendering to prevent build-time evaluation
+export const dynamic = "force-dynamic";
+
 const FROM =
   process.env.CONTACT_EMAIL_FROM ??
   "Daily Pet Journal <onboarding@resend.dev>";
