@@ -16,12 +16,10 @@ export function ContactForm() {
     setStatus("sending");
     setErrorMessage("");
 
-    const formspreeEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
-    if (!formspreeEndpoint) {
-      setStatus("error");
-      setErrorMessage("Contact form is not configured.");
-      return;
-    }
+    // Fallback so form works when build env (e.g. Cloudflare Pages) doesn't inject the var
+    const formspreeEndpoint =
+      process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ||
+      "https://formspree.io/f/xaqdndva";
 
     try {
       const res = await fetch(formspreeEndpoint, {
