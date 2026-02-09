@@ -1,46 +1,31 @@
-import Link from "next/link";
-
 export function Header() {
+  const linkClass =
+    "text-sm font-medium text-foreground transition hover:text-primary";
   return (
     <header className="border-b border-border bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-8">
-        <Link
+        <a
           href="/"
           className="text-xl font-bold text-dark transition hover:text-primary"
         >
           Daily Pet Journal
-        </Link>
+        </a>
         <nav className="flex gap-6">
-          <Link
-            href="/"
-            className="text-sm font-medium text-foreground transition hover:text-primary"
-          >
+          <a href="/" className={linkClass}>
             Home
-          </Link>
-          <Link
-            href="/blog"
-            className="text-sm font-medium text-foreground transition hover:text-primary"
-          >
+          </a>
+          <a href="/blog" className={linkClass}>
             Articles
-          </Link>
-          <Link
-            href="/tags"
-            className="text-sm font-medium text-foreground transition hover:text-primary"
-          >
+          </a>
+          <a href="/tags" className={linkClass}>
             Tags
-          </Link>
-          <Link
-            href="/about"
-            className="text-sm font-medium text-foreground transition hover:text-primary"
-          >
+          </a>
+          <a href="/about" className={linkClass}>
             About
-          </Link>
-          <Link
-            href="/contact"
-            className="text-sm font-medium text-foreground transition hover:text-primary"
-          >
+          </a>
+          <a href="/contact" className={linkClass}>
             Contact
-          </Link>
+          </a>
         </nav>
       </div>
     </header>
