@@ -81,7 +81,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       </div>
 
       <Comments
-        appId={process.env.NEXT_PUBLIC_CUSDIS_APP_ID}
+        appId={
+          process.env.NEXT_PUBLIC_CUSDIS_APP_ID ||
+          'd435766a-3770-45d7-8ba2-eb8161ce9d7e'
+        }
         pageId={post.slug}
         pageUrl={`${process.env.NEXT_PUBLIC_SITE_URL ?? ''}/blog/${post.slug}`}
         pageTitle={post.title}
