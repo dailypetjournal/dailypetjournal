@@ -1,4 +1,3 @@
-import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
 const FROM =
@@ -21,7 +20,8 @@ export async function POST(request: Request) {
     );
   }
 
-  // Initialize Resend lazily (after env check) to avoid build-time errors
+  // Dynamic import to avoid build-time evaluation
+  const { Resend } = await import("resend");
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   let body: { name?: string; email?: string; message?: string };
