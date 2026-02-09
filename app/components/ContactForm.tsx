@@ -16,17 +16,23 @@ export function ContactForm() {
     setStatus("sending");
     setErrorMessage("");
 
+    const formspreeEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
+    if (!formspreeEndpoint) {
+      setStatus("error");
+      setErrorMessage("Contact form is not configured.");
+      return;
+    }
+
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(formspreeEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
       });
-      const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
         setStatus("error");
-        setErrorMessage(data.error ?? "Something went wrong.");
+        setErrorMessage("Something went wrong. Please try again.");
         return;
       }
       setStatus("success");
