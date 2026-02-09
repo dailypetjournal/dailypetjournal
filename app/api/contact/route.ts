@@ -1,8 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const FROM =
   process.env.CONTACT_EMAIL_FROM ??
   "Daily Pet Journal <onboarding@resend.dev>";
@@ -22,6 +20,9 @@ export async function POST(request: Request) {
       { status: 503 }
     );
   }
+
+  // Initialize Resend lazily (after env check) to avoid build-time errors
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   let body: { name?: string; email?: string; message?: string };
   try {
