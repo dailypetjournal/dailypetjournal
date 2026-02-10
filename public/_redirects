@@ -1,0 +1,44 @@
+# Old WordPress URL structure → new Next.js routes (301 = permanent for SEO)
+# Specific pages
+/about-me     /about   301
+/about-me/    /about   301
+/privacy-policy     /privacy   301
+/privacy-policy/    /privacy   301
+
+# WordPress plugin / legacy paths
+/wpautoterms/privacy-policy     /privacy   301
+/wpautoterms/privacy-policy/    /privacy   301
+
+# Old blog post URLs (no /blog/ prefix) → blog index (content no longer on this site)
+/coprophagia-in-dogs-causes-prevention-and-treatment     /blog   301
+/coprophagia-in-dogs-causes-prevention-and-treatment/    /blog   301
+/benefits-of-exercising-with-your-dog     /blog   301
+/benefits-of-exercising-with-your-dog/    /blog   301
+/top-tips-for-grooming-your-pup     /blog   301
+/top-tips-for-grooming-your-pup/    /blog   301
+/healthy-donut-recipes-for-your-pets     /blog   301
+/healthy-donut-recipes-for-your-pets/     /blog   301
+/bulldogs-and-pugs-struggling-to-achieve-previous-age-suggests-analysis-the-madison-chief-gazette     /blog   301
+/bulldogs-and-pugs-struggling-to-achieve-previous-age-suggests-analysis-the-madison-chief-gazette/    /blog   301
+/surprise-your-pup-on-his-birthday     /blog   301
+/surprise-your-pup-on-his-birthday/    /blog   301
+
+# WordPress feed URL
+/healthy-donut-recipes-for-your-pets/feed     /blog   301
+/healthy-donut-recipes-for-your-pets/feed/    /blog   301
+
+# Tag and author URL patterns (old: /tag/… and /author/…)
+/tag/poop     /tags   301
+/tag/poop/    /tags   301
+/tag/poop/feed     /tags   301
+/tag/poop/feed/    /tags   301
+/tag/parasites     /tags   301
+/tag/parasites/    /tags   301
+/tag/behavior     /tags   301
+/tag/behavior/    /tags   301
+/author/sitemanager     /blog   301
+/author/sitemanager/    /blog   301
+
+# Catch-all for any other old /tag/ or /author/ paths
+/tag/*     /tags   301
+/author/*     /blog   301
