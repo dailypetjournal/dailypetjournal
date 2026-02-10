@@ -1,6 +1,8 @@
 import { allPosts } from "contentlayer/generated";
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://dailypetjournal.com";
 
 function getAllTags(): string[] {
