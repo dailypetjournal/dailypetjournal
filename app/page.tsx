@@ -1,5 +1,10 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { EmailSignup } from "@/app/components/EmailSignup";
+
+const EmailSignup = dynamic(
+  () => import("@/app/components/EmailSignup").then((m) => ({ default: m.EmailSignup })),
+  { ssr: true }
+);
 
 export default function Home() {
   return (

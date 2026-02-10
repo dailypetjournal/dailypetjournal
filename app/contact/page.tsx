@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ContactForm } from "@/app/components/ContactForm";
+
+const ContactForm = dynamic(
+  () => import("@/app/components/ContactForm").then((m) => ({ default: m.ContactForm })),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: "Contact | Daily Pet Journal",

@@ -1,8 +1,13 @@
 import { allPosts } from 'contentlayer/generated'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Comments } from '@/app/components/Comments'
 import { MDXContent } from './MDXContent'
+
+const Comments = dynamic(
+  () => import('@/app/components/Comments').then((m) => ({ default: m.Comments })),
+  { ssr: true }
+)
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL || 'https://dailypetjournal.com'
 const SITE_NAME = 'Daily Pet Journal'

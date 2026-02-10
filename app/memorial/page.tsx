@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import { MemorialView } from "./MemorialView";
+
+const MemorialView = dynamic(() => import("./MemorialView").then((m) => ({ default: m.MemorialView })), {
+  ssr: true,
+});
 
 export const metadata: Metadata = {
   title: "Light a Candle | Memorial | Daily Pet Journal",
