@@ -4,6 +4,9 @@ import { notFound } from 'next/navigation'
 import { Comments } from '@/app/components/Comments'
 import { MDXContent } from './MDXContent'
 
+const BASE = process.env.NEXT_PUBLIC_SITE_URL || 'https://dailypetjournal.com'
+const SITE_NAME = 'Daily Pet Journal'
+
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
     slug: post.slug,
@@ -13,16 +16,60 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const post = allPosts.find((post) => post.slug === slug)
-  
+
   if (!post) {
     return {
       title: 'Post Not Found',
     }
   }
 
+  const url = `${BASE}/blog/${post.slug}`
+  const title = post.title
+  const description = post.summary
+  const publishedTime = new Date(post.date).toISOString()
+
   return {
-    title: `${post.title} | Daily Pet Journal`,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: 'article',
+      url,
+      title,
+      description,
+      publishedTime,
+      siteName: SITE_NAME,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+  }
+}
+
+function buildArticleSchema(post: (typeof allPosts)[0]) {
+  const url = `${BASE}/blog/${post.slug}`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
     description: post.summary,
+    datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    author: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: BASE,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: BASE,
+    },
   }
 }
 
@@ -34,16 +81,22 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     notFound()
   }
 
+  const articleSchema = buildArticleSchema(post)
+
   return (
-    <article className="mx-auto max-w-3xl px-4 py-12 md:px-8">
+    <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 md:px-8 md:py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <Link
         href="/blog"
-        className="mb-8 inline-block text-sm font-medium text-primary hover:underline"
+        className="mb-6 inline-block py-2 text-sm font-medium text-primary hover:underline md:mb-8"
       >
         ← Back to Articles
       </Link>
-      <header className="mb-8 border-b border-border pb-8">
-        <h1 className="text-4xl font-bold text-dark">{post.title}</h1>
+      <header className="mb-6 border-b border-border pb-6 md:mb-8 md:pb-8">
+        <h1 className="text-2xl font-bold leading-tight text-dark sm:text-3xl md:text-4xl">{post.title}</h1>
         <div className="mt-4 flex items-center gap-4 text-sm text-foreground">
           <time dateTime={post.date}>
             {new Date(post.date).toLocaleDateString('en-US', {

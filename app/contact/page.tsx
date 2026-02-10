@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="bg-background">
-      <article className="mx-auto max-w-3xl px-4 py-12 md:px-8 md:py-16">
-        <h1 className="text-4xl font-bold text-dark">Contact</h1>
+      <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 md:px-8 md:py-16">
+        <h1 className="text-2xl font-bold text-dark sm:text-3xl md:text-4xl">Contact</h1>
         <p className="mt-4 text-foreground leading-relaxed">
           We&apos;d love to hear from you. If you have a question, a prayer request, or
           feedback about Daily Pet Journal, send a message below.

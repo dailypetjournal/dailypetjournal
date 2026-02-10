@@ -20,6 +20,24 @@ export function Footer() {
         </p>
         <div className="mt-4 flex justify-center gap-4 sm:justify-start">
           <a
+            href="/resources"
+            className="text-xs text-foreground transition hover:text-primary"
+          >
+            Resources
+          </a>
+          <a
+            href="/faq"
+            className="text-xs text-foreground transition hover:text-primary"
+          >
+            FAQ
+          </a>
+          <a
+            href="/memorial"
+            className="text-xs text-foreground transition hover:text-primary"
+          >
+            Memorial
+          </a>
+          <a
             href="/privacy"
             className="text-xs text-foreground transition hover:text-primary"
           >

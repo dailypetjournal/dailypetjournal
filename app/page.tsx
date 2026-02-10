@@ -1,14 +1,15 @@
 import Link from "next/link";
+import { EmailSignup } from "@/app/components/EmailSignup";
 
 export default function Home() {
   return (
     <div className="bg-background">
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-8 md:py-24">
         <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-dark md:text-5xl">
+          <h1 className="text-3xl font-bold tracking-tight text-dark sm:text-4xl md:text-5xl">
             Daily Pet Journal
           </h1>
-          <p className="mt-4 text-xl text-foreground">
+          <p className="mt-4 text-lg text-foreground sm:text-xl">
             Comfort, guidance, and hope for Christian pet owners navigating grief and loss.
           </p>
           <p className="mt-2 text-foreground">
@@ -28,7 +29,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="mt-20 rounded-xl border border-border bg-white p-8 shadow-sm">
+        <div className="mt-20 rounded-xl border border-border bg-white p-6 shadow-sm sm:p-8">
           <h2 className="text-xl font-semibold text-dark">
             Finding comfort in faith
           </h2>
@@ -36,6 +37,8 @@ export default function Home() {
             When you lose a beloved pet, the grief is real. Daily Pet Journal offers biblical guidance, comforting Scripture, and hope from ancient and modern Christian tradition—so you don&apos;t have to walk through it alone.
           </p>
         </div>
+
+        <EmailSignup />
       </section>
     </div>
   );

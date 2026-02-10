@@ -20,8 +20,8 @@ export default function TagsPage() {
 
   return (
     <div className="bg-background">
-      <div className="mx-auto max-w-3xl px-4 py-12 md:px-8 md:py-16">
-        <h1 className="text-4xl font-bold text-dark">Tags</h1>
+      <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 md:px-8 md:py-16">
+        <h1 className="text-2xl font-bold text-dark sm:text-3xl md:text-4xl">Tags</h1>
         <p className="mt-2 text-foreground">
           Browse articles by topic.
         </p>

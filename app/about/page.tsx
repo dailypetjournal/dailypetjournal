@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="bg-background">
-      <article className="mx-auto max-w-3xl px-4 py-12 md:px-8 md:py-16">
-        <h1 className="text-4xl font-bold text-dark">About Daily Pet Journal</h1>
-        <p className="mt-4 text-lg text-foreground leading-relaxed">
+      <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 md:px-8 md:py-16">
+        <h1 className="text-2xl font-bold text-dark sm:text-3xl md:text-4xl">About Daily Pet Journal</h1>
+        <p className="mt-4 text-base text-foreground leading-relaxed sm:text-lg">
           Daily Pet Journal exists to offer comfort, guidance, and hope to Christian pet owners
           who are grieving the loss of a beloved companion—or walking through the difficult
           decisions that come with a pet&apos;s end of life.
