@@ -61,7 +61,7 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile nav panel */}
+      {/* Mobile nav panel: when closed, links are not focusable so aria-hidden is valid */}
       <div
         id="mobile-nav"
         className={`overflow-y-auto overflow-x-hidden border-t border-border bg-white transition-[max-height] duration-200 ease-out md:hidden ${
@@ -75,6 +75,7 @@ export function Header() {
               key={href}
               href={href}
               className={mobileLinkClass}
+              tabIndex={menuOpen ? 0 : -1}
               onClick={() => setMenuOpen(false)}
             >
               {label}

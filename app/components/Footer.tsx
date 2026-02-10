@@ -15,7 +15,7 @@ export function Footer() {
             Comfort in faith for pet loss. © {year}
           </p>
         </div>
-        <p className="mt-4 text-center text-xs text-light sm:text-left">
+        <p className="mt-4 text-center text-xs text-foreground sm:text-left">
           Biblical wisdom and hope for grieving pet owners.
         </p>
         <div className="mt-4 flex justify-center gap-4 sm:justify-start">

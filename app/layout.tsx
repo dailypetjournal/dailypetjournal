@@ -65,6 +65,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="dns-prefetch" href="https://cusdis.com" />
+        <link rel="dns-prefetch" href="https://formspree.io" />
+      </head>
       <body
         className={`${mulish.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased overflow-x-hidden`}
       >
