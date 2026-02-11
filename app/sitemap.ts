@@ -1,4 +1,5 @@
 import { allPosts } from "contentlayer/generated";
+import { tagToSlug } from "@/lib/tag-slug";
 import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
@@ -35,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const tagPages: MetadataRoute.Sitemap = getAllTags().map((tag) => ({
-    url: `${BASE}/tags/${encodeURIComponent(tag)}`,
+    url: `${BASE}/tags/${tagToSlug(tag)}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.5,

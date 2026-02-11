@@ -1,4 +1,5 @@
 import { allPosts } from "contentlayer/generated";
+import { tagToSlug } from "@/lib/tag-slug";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -29,7 +30,7 @@ export default function TagsPage() {
           {tags.map((tag) => (
             <li key={tag}>
               <Link
-                href={`/tags/${encodeURIComponent(tag)}`}
+                href={`/tags/${tagToSlug(tag)}`}
                 className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary/20"
               >
                 {tag}

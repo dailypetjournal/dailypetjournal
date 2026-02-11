@@ -1,4 +1,5 @@
 import { allPosts } from "contentlayer/generated";
+import { tagToSlug, slugToTag } from "@/lib/tag-slug";
 import { compareDesc } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -16,32 +17,34 @@ function getAllTags(): string[] {
 
 export async function generateStaticParams() {
   const tags = getAllTags();
-  return tags.map((tag) => ({ tag: encodeURIComponent(tag) }));
+  return tags.map((tag) => ({ tag: tagToSlug(tag) }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { tag } = await params;
-  const decoded = decodeURIComponent(tag);
+  const { tag: slug } = await params;
+  const tags = getAllTags();
+  const tagName = slugToTag(slug, tags);
+  if (!tagName) return { title: "Tag not found" };
   return {
-    title: `${decoded} | Tags | Daily Pet Journal`,
-    description: `Articles tagged with "${decoded}".`,
+    title: `${tagName} | Tags | Daily Pet Journal`,
+    description: `Articles tagged with "${tagName}".`,
   };
 }
 
 export default async function TagPage({ params }: Props) {
-  const { tag } = await params;
-  const decoded = decodeURIComponent(tag);
+  const { tag: slug } = await params;
   const tags = getAllTags();
-  if (!tags.includes(decoded)) notFound();
+  const tagName = slugToTag(slug, tags);
+  if (!tagName) notFound();
 
   const posts = allPosts
-    .filter((p) => p.tags && p.tags.includes(decoded))
+    .filter((p) => p.tags && p.tags.includes(tagName))
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
 
   return (
     <div className="bg-background">
       <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 md:px-8 md:py-16">
-        <h1 className="text-2xl font-bold text-dark sm:text-3xl md:text-4xl">Tag: {decoded}</h1>
+        <h1 className="text-2xl font-bold text-dark sm:text-3xl md:text-4xl">Tag: {tagName}</h1>
         <p className="mt-2 text-foreground">
           {posts.length} article{posts.length !== 1 ? "s" : ""} with this tag.
         </p>
